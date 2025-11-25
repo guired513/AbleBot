@@ -1,0 +1,9 @@
+# Environment folders
+.env
+.venv/
+env/
+venv/
+
+# System files
+.DS_Store
+Thumbs.db
