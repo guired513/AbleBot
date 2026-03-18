@@ -1,36 +1,42 @@
-from fastapi import FastAPI, UploadFile, File
-from fastapi.middleware.cors import CORSMiddleware
+from flask import Flask, request, jsonify
 from api.chatbot_logic import get_bot_response
-from api.audio_pipeline import transcribe_audio
-from api.image_reader import extract_text_from_image
+from api.audio_pipeline import transcribe_audio_file
+from api.image_reader import extract_text_from_image_file
 
-app = FastAPI(title="AbleBot API", version="1.0")
+app = Flask(__name__)
 
-# Allow cross-origin requests for local dev
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Restrict this in prod
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"message": "AbleBot backend is running."})
 
-@app.get("/")
-def root():
-    return {"message": "AbleBot API is live."}
+@app.route("/chat", methods=["POST"])
+def chat():
+    data = request.get_json()
+    user_input = data.get("message", "").strip()
 
-@app.post("/chat")
-async def chat(user_input: str):
-    reply = get_bot_response(user_input)
-    return {"response": reply}
+    if not user_input:
+        return jsonify({"error": "No message provided."}), 400
 
-@app.post("/stt")
-async def speech_to_text(file: UploadFile = File(...)):
-    text = transcribe_audio(await file.read())
-    return {"transcription": text}
+    response = get_bot_response(user_input)
+    return jsonify({"response": response})
 
-@app.post("/ocr")
-async def ocr_image(file: UploadFile = File(...)):
-    image_bytes = await file.read()
-    text = extract_text_from_image(image_bytes)
-    return {"text": text}
+@app.route("/stt", methods=["POST"])
+def stt():
+    if "audio" not in request.files:
+        return jsonify({"error": "No audio file uploaded."}), 400
+
+    audio_file = request.files["audio"]
+    result = transcribe_audio_file(audio_file)
+    return jsonify({"transcription": result})
+
+@app.route("/ocr", methods=["POST"])
+def ocr():
+    if "image" not in request.files:
+        return jsonify({"error": "No image file uploaded."}), 400
+
+    image_file = request.files["image"]
+    result = extract_text_from_image_file(image_file)
+    return jsonify({"text": result})
+
+if __name__ == "__main__":
+    app.run(debug=True)
