@@ -1,0 +1,124 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "hello",
+        "hi",
+        "good morning",
+        "good afternoon",
+        "kamusta",
+        "kumusta",
+        "magandang umaga",
+        "magandang hapon"
+      ],
+      "responses": [
+        "Hello. How can I assist you today?",
+        "Hi there. What do you need help with?",
+        "Kamusta. Paano kita matutulungan ngayon?"
+      ]
+    },
+    {
+      "tag": "pwd_id",
+      "patterns": [
+        "pwd id",
+        "how to apply for pwd id",
+        "where can i get pwd id",
+        "paano kumuha ng pwd id",
+        "saan kukuha ng pwd id",
+        "apply for pwd id"
+      ],
+      "responses": [
+        "You may apply for a PWD ID at your local PDAO or municipal social welfare office.",
+        "For PWD ID application, please visit your local PDAO and prepare the required medical documents.",
+        "Maaaring kumuha ng PWD ID sa inyong local PDAO o municipal social welfare office."
+      ]
+    },
+    {
+      "tag": "philhealth",
+      "patterns": [
+        "philhealth",
+        "how to apply for philhealth",
+        "paano mag apply sa philhealth",
+        "philhealth application",
+        "where is philhealth"
+      ],
+      "responses": [
+        "You can apply for PhilHealth at the nearest office or through their online portal.",
+        "For PhilHealth concerns, visit the nearest PhilHealth office or check their official website.",
+        "Maaari kang mag-apply sa PhilHealth office o sa kanilang online portal."
+      ]
+    },
+    {
+      "tag": "benefits",
+      "patterns": [
+        "pwd benefits",
+        "what are the benefits of pwd",
+        "discount of pwd",
+        "ano ang benepisyo ng pwd",
+        "pwd discount",
+        "karapatan ng pwd"
+      ],
+      "responses": [
+        "PWDs are entitled to discounts, priority lanes, and selected support services under Philippine law.",
+        "Persons with disabilities may avail discounts on medicine, transport, and other covered services.",
+        "May benepisyo ang PWD tulad ng discounts, priority lane, at iba pang suporta."
+      ]
+    },
+    {
+      "tag": "location_pdao",
+      "patterns": [
+        "where is pdao",
+        "where is the pdao office",
+        "saan ang pdao",
+        "nasaan ang pdao office",
+        "pdao office location"
+      ],
+      "responses": [
+        "Please check with your municipal or provincial LGU for the exact location of your PDAO office.",
+        "The PDAO office is usually located within the LGU or municipal government offices.",
+        "Karaniwang nasa loob ng LGU o municipal government offices ang PDAO."
+      ]
+    },
+    {
+      "tag": "medical_help",
+      "patterns": [
+        "i need medical help",
+        "medical assistance",
+        "kailangan ko ng medikal na tulong",
+        "health center",
+        "nearest clinic"
+      ],
+      "responses": [
+        "Please proceed to the nearest health center or contact your LGU health office for assistance.",
+        "If this is urgent, go to the nearest clinic or hospital immediately.",
+        "Kung ito ay emergency, pumunta agad sa pinakamalapit na clinic o ospital."
+      ]
+    },
+    {
+      "tag": "reminder",
+      "patterns": [
+        "remind me",
+        "set reminder",
+        "paalala",
+        "ipaalala",
+        "gamot reminder",
+        "appointment reminder"
+      ],
+      "responses": [
+        "Reminder support is planned in the next module of AbleBot.",
+        "I can help with reminders in a future version of this prototype.",
+        "Ang reminder feature ay isasama sa susunod na module ng AbleBot."
+      ]
+    },
+    {
+      "tag": "fallback",
+      "patterns": [],
+      "responses": [
+        "I am still being trained. For now, I can help with basic accessibility and government service inquiries.",
+        "I am still learning. Please try asking about PWD ID, PhilHealth, or PWD benefits.",
+        "Patuloy pa akong sinasanay. Maaari mong itanong ang tungkol sa PWD ID, PhilHealth, o benepisyo ng PWD."
+      ]
+    }
+  ]
+}
