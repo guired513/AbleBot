@@ -12,13 +12,15 @@ def home():
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
+
     user_input = data.get("message", "").strip()
+    mode = data.get("mode", "rule-based").strip()
 
     if not user_input:
         return jsonify({"error": "No message provided."}), 400
 
-    response = get_bot_response(user_input)
-    return jsonify({"response": response})
+    result = get_bot_response(user_input, mode)
+    return jsonify(result)
 
 @app.route("/stt", methods=["POST"])
 def stt():
