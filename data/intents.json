@@ -41,7 +41,16 @@
         "how to apply for philhealth",
         "paano mag apply sa philhealth",
         "philhealth application",
-        "where is philhealth"
+        "where is philhealth",
+        "philhealth membership",
+        "how to apply for philhealth membership",
+        "i need help with philhealth membership",
+        "philhealth member registration",
+        "health insurance membership philippines",
+        "how to get philhealth insurance",
+        "apply for government health insurance",
+        "paano mag apply philhealth membership",
+        "paano maging philhealth member"
       ],
       "responses": [
         "You can apply for PhilHealth at the nearest office or through their online portal.",
@@ -83,11 +92,12 @@
     {
       "tag": "medical_help",
       "patterns": [
-        "i need medical help",
-        "medical assistance",
-        "kailangan ko ng medikal na tulong",
-        "health center",
-        "nearest clinic"
+        "i need emergency medical help",
+        "nearest hospital",
+        "urgent medical assistance",
+        "where is the nearest clinic",
+        "i am sick and need a doctor",
+        "emergency health situation"
       ],
       "responses": [
         "Please proceed to the nearest health center or contact your LGU health office for assistance.",

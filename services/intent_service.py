@@ -1,6 +1,7 @@
 import json
 import os
 import random
+import re
 
 
 class IntentService:
@@ -10,7 +11,6 @@ class IntentService:
         self.intents = self._load_intents()
 
     def _load_intents(self):
-        """Load intents from the JSON file."""
         try:
             with open(self.intents_path, "r", encoding="utf-8") as file:
                 data = json.load(file)
@@ -20,31 +20,57 @@ class IntentService:
             return []
 
     def _normalize_text(self, text: str) -> str:
-        """Normalize user input for matching."""
-        return text.lower().strip()
+        text = text.lower().strip()
+        text = re.sub(r"[^\w\s]", "", text)
+        return text
 
-    def _find_matching_intent(self, user_input: str):
-        """Find the best matching intent using simple keyword matching."""
-        user_input = self._normalize_text(user_input)
+    def _tokenize(self, text: str):
+        return self._normalize_text(text).split()
+
+    def _score_pattern_match(self, user_input: str, pattern: str) -> float:
+        user_tokens = set(self._tokenize(user_input))
+        pattern_tokens = set(self._tokenize(pattern))
+
+        if not user_tokens or not pattern_tokens:
+            return 0.0
+
+        overlap = user_tokens.intersection(pattern_tokens)
+        score = len(overlap) / len(pattern_tokens)
+        return score
+
+    def _find_best_intent(self, user_input: str):
+        best_intent = None
+        best_score = 0.0
 
         for intent in self.intents:
+            if intent.get("tag") == "fallback":
+                continue
+
             for pattern in intent.get("patterns", []):
-                pattern = self._normalize_text(pattern)
-                if pattern in user_input or user_input in pattern:
-                    return intent
+                score = self._score_pattern_match(user_input, pattern)
 
-        return None
+                if score > best_score:
+                    best_score = score
+                    best_intent = intent
 
-    def get_response(self, user_input: str) -> str:
-        """Return a response based on matched intent."""
+        return best_intent, best_score
+
+    def get_response(self, user_input: str) -> dict:
         try:
-            matched_intent = self._find_matching_intent(user_input)
+            matched_intent, confidence = self._find_best_intent(user_input)
 
-            if matched_intent:
+            # 🔥 THIS IS THE THRESHOLD (you were looking for this earlier)
+            if matched_intent and confidence >= 0.6:
                 responses = matched_intent.get("responses", [])
-                if responses:
-                    return random.choice(responses)
+                response_text = random.choice(responses) if responses else "No response available."
 
+                return {
+                    "intent": matched_intent.get("tag", "unknown"),
+                    "confidence": round(confidence, 2),
+                    "response": response_text
+                }
+
+            # fallback
             fallback_intent = next(
                 (intent for intent in self.intents if intent.get("tag") == "fallback"),
                 None
@@ -52,10 +78,23 @@ class IntentService:
 
             if fallback_intent:
                 fallback_responses = fallback_intent.get("responses", [])
-                if fallback_responses:
-                    return random.choice(fallback_responses)
+                fallback_text = random.choice(fallback_responses)
 
-            return "Sorry, I could not understand your request."
+                return {
+                    "intent": "fallback",
+                    "confidence": round(confidence, 2),
+                    "response": fallback_text
+                }
+
+            return {
+                "intent": "unknown",
+                "confidence": round(confidence, 2),
+                "response": "Sorry, I could not understand your request."
+            }
 
         except Exception as e:
-            return f"Intent service error: {str(e)}"
+            return {
+                "intent": "error",
+                "confidence": 0.0,
+                "response": f"Intent service error: {str(e)}"
+            }
