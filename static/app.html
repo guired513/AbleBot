@@ -13,9 +13,10 @@
 <body>
   <main class="app-shell">
     <section class="hero">
-      <div class="badge">Research Prototype</div>
+      <div class="badge">Prototype</div>
       <h1>AbleBot</h1>
       <p>Accessible AI assistant for text, voice, and image-based support.</p>
+      <button class="access-btn" onclick="toggleAccessibility()">Accessibility Mode</button>
     </section>
 
     <section class="access-panel">
@@ -26,30 +27,43 @@
     <section class="chat-card">
       <label for="message">Ask AbleBot</label>
       <textarea id="message" placeholder="Example: How do I apply for PWD ID?"></textarea>
-
-      <button class="primary-btn" onclick="sendMessage()">Send Message</button>
-
+      <div class="chat-actions">
+        <button class="voice-btn" onclick="startListening()">🎤 Speak Input</button>
+        <button class="primary-btn" onclick="sendMessage()">Send Message</button>
+      </div>
+      <button class="speak-response-btn" onclick="speakText(lastResponse)">
+        🔊 Speak Response
+      </button>
       <div id="responseBox" class="response-box">
         AbleBot response will appear here.
+       
       </div>
 
-      <div id="metaBox" class="meta-box"></div>
+      <div id="metaBox" class="meta-box"> </div>
     </section>
 
     <section class="tool-grid">
       <div class="tool-card">
         <h2>Image Reader</h2>
         <p>Upload an image with text.</p>
-        <input type="file" id="imageInput" accept="image/*" />
-        <button onclick="sendOCR()">Read Image</button>
+        <label class="file-picker">
+          📷 Choose Image
+          <input type="file" id="imageInput" accept="image/*" />
+        </label>
+
+        <button class="tool-btn" onclick="sendOCR()">Read Image</button>
         <div id="ocrResult" class="mini-result"></div>
       </div>
 
       <div class="tool-card">
         <h2>Voice Reader</h2>
         <p>Upload an audio file.</p>
-        <input type="file" id="audioInput" accept="audio/*" />
-        <button onclick="sendSTT()">Transcribe Audio</button>
+        <label class="file-picker">
+          🎙 Choose Audio
+          <input type="file" id="audioInput" accept="audio/*" />
+        </label>
+
+        <button class="tool-btn" onclick="sendSTT()">Transcribe Audio</button>
         <div id="sttResult" class="mini-result"></div>
       </div>
     </section>

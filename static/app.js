@@ -1,4 +1,5 @@
 let currentMode = "bert";
+let lastResponse = "";
 
 function setMode(mode) {
   currentMode = mode;
@@ -11,6 +12,63 @@ function setMode(mode) {
   } else {
     buttons[1].classList.add("active");
   }
+}
+
+function speakText(text) {
+  if (!text || !text.trim()) {
+    alert("There is no response to speak yet.");
+    return;
+  }
+
+  if (!("speechSynthesis" in window)) {
+    alert("Text-to-speech is not supported in this browser.");
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(text);
+  speech.lang = "en-US";
+  speech.rate = 0.9;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  window.speechSynthesis.speak(speech);
+}
+
+function startListening() {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  if (!SpeechRecognition) {
+    alert(
+      "Voice input is not supported in this browser. Please use the audio upload Speech-to-Text feature instead."
+    );
+    return;
+  }
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = "en-US";
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = function () {
+    document.getElementById("responseBox").innerText = "Listening...";
+  };
+
+  recognition.onresult = function (event) {
+    const transcript = event.results[0][0].transcript;
+    document.getElementById("message").value = transcript;
+    document.getElementById("responseBox").innerText =
+      "Voice captured. Tap Send Message to ask AbleBot.";
+  };
+
+  recognition.onerror = function (event) {
+    document.getElementById("responseBox").innerText =
+      "Voice input error: " + event.error + ". You may use audio upload instead.";
+  };
+
+  recognition.start();
 }
 
 async function sendMessage() {
@@ -40,7 +98,8 @@ async function sendMessage() {
 
     const data = await response.json();
 
-    responseBox.innerText = data.response || "No response received.";
+    lastResponse = data.response || "No response received.";
+    responseBox.innerText = lastResponse;
 
     metaBox.innerHTML = `
       <strong>Intent:</strong> ${data.intent || "N/A"}<br>
@@ -62,7 +121,8 @@ async function sendOCR() {
     return;
   }
 
-  resultBox.innerText = "Reading image...";
+  resultBox.innerText = "Image selected: " + input.files[0].name + "\nReading image...";
+
 
   const formData = new FormData();
   formData.append("image", input.files[0]);
@@ -89,7 +149,7 @@ async function sendSTT() {
     return;
   }
 
-  resultBox.innerText = "Transcribing audio...";
+  resultBox.innerText = "Audio selected: " + input.files[0].name + "\nTranscribing audio...";
 
   const formData = new FormData();
   formData.append("audio", input.files[0]);
@@ -102,7 +162,15 @@ async function sendSTT() {
 
     const data = await response.json();
     resultBox.innerText = data.transcription || "No transcription detected.";
+
+    if (data.transcription) {
+      document.getElementById("message").value = data.transcription;
+    }
   } catch (error) {
     resultBox.innerText = "Speech-to-text failed.";
   }
+}
+
+function toggleAccessibility() {
+  document.body.classList.toggle("accessibility");
 }
