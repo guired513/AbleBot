@@ -1,0 +1,161 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #e5edf7;
+  color: #0f172a;
+}
+
+.app-shell {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 18px;
+}
+
+.hero {
+  background: linear-gradient(135deg, #0f172a, #1d4ed8);
+  color: white;
+  padding: 28px 22px;
+  border-radius: 28px;
+  margin-bottom: 18px;
+}
+
+.badge {
+  display: inline-block;
+  background: #bfdbfe;
+  color: #0f172a;
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: 44px;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.access-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.access-btn,
+.primary-btn,
+.tool-card button {
+  min-height: 56px;
+  border: none;
+  border-radius: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  background: #dbeafe;
+  color: #0f172a;
+}
+
+.access-btn.active,
+.primary-btn {
+  background: #1d4ed8;
+  color: white;
+}
+
+.chat-card,
+.tool-card {
+  background: white;
+  padding: 20px;
+  border-radius: 24px;
+  margin-bottom: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+label {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+textarea {
+  width: 100%;
+  min-height: 120px;
+  font-size: 20px;
+  padding: 16px;
+  border-radius: 18px;
+  border: 2px solid #cbd5e1;
+  resize: vertical;
+  margin-bottom: 14px;
+}
+
+.response-box {
+  margin-top: 16px;
+  background: #eff6ff;
+  border-left: 6px solid #1d4ed8;
+  padding: 18px;
+  border-radius: 18px;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.meta-box {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #475569;
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.tool-card h2 {
+  margin-top: 0;
+  font-size: 24px;
+}
+
+.tool-card p {
+  font-size: 17px;
+  color: #475569;
+}
+
+input[type="file"] {
+  width: 100%;
+  font-size: 16px;
+  margin: 12px 0;
+}
+
+.mini-result {
+  margin-top: 12px;
+  background: #f1f5f9;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 17px;
+  white-space: pre-wrap;
+}
+
+footer {
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+  margin: 20px 0;
+}
+
+/* Accessibility focus indicators */
+button:focus,
+textarea:focus,
+input:focus {
+  outline: 4px solid #facc15;
+  outline-offset: 3px;
+}
