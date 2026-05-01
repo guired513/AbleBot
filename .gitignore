@@ -4,9 +4,20 @@
 env/
 venv/
 
-# System files
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# ML Models (IMPORTANT)
+models/
+*.bin
+*.pt
+*.pkl
+
+# OS files
 .DS_Store
 Thumbs.db
 
-pycache/
-*.pyc
+# Logs
+logs/
