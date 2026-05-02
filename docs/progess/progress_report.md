@@ -157,3 +157,18 @@ The following features can be demonstrated:
 ## 8. Summary
 
 The AbleBot system has progressed from conceptual design to a functional prototype integrating NLP and ML components. The current implementation demonstrates the feasibility of an accessible AI chatbot for PWD support. While machine learning performance is still limited by dataset size, the foundational pipeline for BERT-based intent classification has been successfully established.
+
+
+## BERT Fine-Tuning Update
+
+The AbleBot intent dataset was expanded from 51 labeled samples to 195 labeled samples across seven intent categories. A BERT fine-tuning pipeline was executed using the expanded dataset.
+
+Training was conducted for three epochs. The average training loss decreased across epochs:
+
+- Epoch 1: 1.9192
+- Epoch 2: 1.4861
+- Epoch 3: 1.0694
+
+The initial test accuracy reached 84.62%.
+
+This result indicates that the supervised BERT fine-tuning pipeline is functional and that dataset expansion improved the model’s intent classification performance. Further validation with larger and real user-derived datasets will be conducted in the next phase.

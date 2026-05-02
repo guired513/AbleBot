@@ -98,7 +98,7 @@ def main():
 
     optimizer = AdamW(model.parameters(), lr=2e-5)
 
-    epochs = 1
+    epochs = 3
     model.train()
 
     print("\nTraining started...")

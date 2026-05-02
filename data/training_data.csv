@@ -1,18 +1,54 @@
 text,label
 hello,greeting
 hi,greeting
+hey,greeting
 good morning,greeting
 good afternoon,greeting
+good evening,greeting
 kamusta,greeting
 kumusta,greeting
 magandang umaga,greeting
 magandang hapon,greeting
+magandang gabi,greeting
+hello ablebot,greeting
+hi ablebot,greeting
+can you help me,greeting
+i need assistance,greeting
+please help me,greeting
+tulungan mo ako,greeting
+kailangan ko ng tulong,greeting
+pwede mo ba akong tulungan,greeting
+ablebot are you there,greeting
+i need help today,greeting
+may tanong ako,greeting
+can i ask something,greeting
+help me please,greeting
+i want to ask for help,greeting
 pwd id,pwd_id
 how to apply for pwd id,pwd_id
 where can i get pwd id,pwd_id
 paano kumuha ng pwd id,pwd_id
 saan kukuha ng pwd id,pwd_id
 apply for pwd id,pwd_id
+i want to get a pwd id,pwd_id
+i need a pwd card,pwd_id
+i want to get a disability card,pwd_id
+how can i get a disability card,pwd_id
+where do i apply for disability id,pwd_id
+pwd card application,pwd_id
+requirements for pwd id,pwd_id
+what are the requirements for pwd id,pwd_id
+documents needed for pwd id,pwd_id
+medical certificate for pwd id,pwd_id
+renew pwd id,pwd_id
+how to renew pwd id,pwd_id
+lost pwd id,pwd_id
+replace lost pwd id,pwd_id
+paano mag renew ng pwd id,pwd_id
+saan mag renew ng pwd id,pwd_id
+paano kung nawala ang pwd id,pwd_id
+ano ang requirements sa pwd id,pwd_id
+pwd identification card application,pwd_id
 philhealth,philhealth
 how to apply for philhealth,philhealth
 paano mag apply sa philhealth,philhealth
@@ -27,26 +63,134 @@ how to get philhealth insurance,philhealth
 apply for government health insurance,philhealth
 paano mag apply philhealth membership,philhealth
 paano maging philhealth member,philhealth
+how do i register for philhealth,philhealth
+register for philhealth,philhealth
+philhealth registration,philhealth
+philhealth enrollment,philhealth
+enroll in philhealth,philhealth
+how to register philhealth,philhealth
+how can i register for philhealth,philhealth
+paano mag register sa philhealth,philhealth
+paano magpa register sa philhealth,philhealth
+i want health insurance,philhealth
+help me become a philhealth member,philhealth
+where can i pay philhealth,philhealth
+philhealth contribution,philhealth
+philhealth for pwd,philhealth
+is pwd covered by philhealth,philhealth
+philhealth benefits for pwd,philhealth
 pwd benefits,benefits
 what are the benefits of pwd,benefits
 discount of pwd,benefits
 ano ang benepisyo ng pwd,benefits
 pwd discount,benefits
 karapatan ng pwd,benefits
+what are my rights as pwd,benefits
+pwd rights,benefits
+benefits for persons with disabilities,benefits
+discounts for disabled persons,benefits
+how much discount for pwd,benefits
+20 percent discount for pwd,benefits
+pwd medicine discount,benefits
+pwd transportation discount,benefits
+pwd grocery discount,benefits
+pwd restaurant discount,benefits
+pwd hospital discount,benefits
+pwd priority lane,benefits
+priority lane for pwd,benefits
+special benefits for pwd,benefits
+government benefits for pwd,benefits
+social benefits for pwd,benefits
+ano ang karapatan ng may kapansanan,benefits
+may discount ba ang pwd,benefits
+saan magagamit ang pwd id,benefits
+ano ang pwedeng makuha ng pwd,benefits
+benefits of having pwd id,benefits
+pwd privileges,benefits
+pwd privileges philippines,benefits
+rights of persons with disabilities philippines,benefits
 where is pdao,location_pdao
 where is the pdao office,location_pdao
 saan ang pdao,location_pdao
 nasaan ang pdao office,location_pdao
 pdao office location,location_pdao
+where can i find pdao,location_pdao
+nearest pdao office,location_pdao
+local pdao office,location_pdao
+municipal pdao office,location_pdao
+provincial pdao office,location_pdao
+pdao in albay,location_pdao
+pdao in polangui,location_pdao
+albay pdao office,location_pdao
+polangui pdao office,location_pdao
+where to ask about pwd services,location_pdao
+office for pwd concerns,location_pdao
+pwd affairs office,location_pdao
+persons with disability affairs office,location_pdao
+saan pupunta para sa pwd concern,location_pdao
+saan ang office ng pwd,location_pdao
+nasaan ang opisina ng pdao,location_pdao
+pdao contact information,location_pdao
+contact pdao,location_pdao
+how to contact pdao,location_pdao
+pdao help desk,location_pdao
 i need emergency medical help,medical_help
 nearest hospital,medical_help
 urgent medical assistance,medical_help
 where is the nearest clinic,medical_help
 i am sick and need a doctor,medical_help
 emergency health situation,medical_help
+medical assistance,medical_help
+i need medical help,medical_help
+health center,medical_help
+nearest clinic,medical_help
+where can i get medical help,medical_help
+i need to see a doctor,medical_help
+i feel sick,medical_help
+i need medicine,medical_help
+hospital near me,medical_help
+clinic near me,medical_help
+emergency room,medical_help
+call medical help,medical_help
+i need health assistance,medical_help
+medical support for pwd,medical_help
+free medical checkup for pwd,medical_help
+saan ang pinakamalapit na ospital,medical_help
+saan ang health center,medical_help
+kailangan ko ng doktor,medical_help
+kailangan ko ng gamot,medical_help
+may emergency ako,medical_help
+saan ako magpapatingin,medical_help
+medical concern,medical_help
+health emergency,medical_help
+doctor appointment,medical_help
 remind me,reminder
 set reminder,reminder
 paalala,reminder
 ipaalala,reminder
 gamot reminder,reminder
 appointment reminder,reminder
+remind me to take medicine,reminder
+remind me of my medicine,reminder
+medicine reminder,reminder
+medication reminder,reminder
+remind me about my checkup,reminder
+remind me about my therapy,reminder
+set therapy reminder,reminder
+set checkup reminder,reminder
+appointment schedule,reminder
+schedule my appointment,reminder
+remind me tomorrow,reminder
+remind me later,reminder
+paalala sa gamot,reminder
+paalala sa checkup,reminder
+paalala sa therapy,reminder
+ipaalala ang appointment,reminder
+mag set ng reminder,reminder
+set daily reminder,reminder
+remind me every morning,reminder
+remind me every evening,reminder
+reminder for philhealth appointment,reminder
+reminder for pdao appointment,reminder
+medical appointment reminder,reminder
+therapy schedule reminder,reminder
