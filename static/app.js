@@ -1,17 +1,21 @@
-let currentMode = "bert";
+
 let lastResponse = "";
+let currentMode = "rule-based";
 
 function setMode(mode) {
-  currentMode = mode;
+    currentMode = mode;
 
-  const buttons = document.querySelectorAll(".access-btn");
-  buttons.forEach(btn => btn.classList.remove("active"));
+    document.getElementById("btn-rule").classList.remove("active");
+    document.getElementById("btn-bert").classList.remove("active");
+    document.getElementById("btn-bert-ft").classList.remove("active");
 
-  if (mode === "rule-based") {
-    buttons[0].classList.add("active");
-  } else {
-    buttons[1].classList.add("active");
-  }
+    if (mode === "rule-based") {
+        document.getElementById("btn-rule").classList.add("active");
+    } else if (mode === "bert") {
+        document.getElementById("btn-bert").classList.add("active");
+    } else {
+        document.getElementById("btn-bert-ft").classList.add("active");
+    }
 }
 
 function speakText(text) {
@@ -82,7 +86,7 @@ async function sendMessage() {
   }
 
   responseBox.innerText = "AbleBot is thinking...";
-  metaBox.innerText = "";
+  if (metaBox) metaBox.innerHTML = "";
 
   try {
     const response = await fetch("/chat", {
@@ -92,23 +96,38 @@ async function sendMessage() {
       },
       body: JSON.stringify({
         message: message,
-        mode: currentMode
+        mode: currentMode || "rule-based"
       })
     });
 
-    const data = await response.json();
+    const rawText = await response.text();
+    console.log("Raw backend response:", rawText);
+
+    let data;
+
+    try {
+      data = JSON.parse(rawText);
+    } catch (parseError) {
+      responseBox.innerText = "Backend responded, but response was not valid JSON.";
+      console.error("JSON parse error:", parseError);
+      return;
+    }
 
     lastResponse = data.response || "No response received.";
     responseBox.innerText = lastResponse;
 
-    metaBox.innerHTML = `
-      <strong>Intent:</strong> ${data.intent || "N/A"}<br>
-      <strong>Confidence:</strong> ${data.confidence ?? "N/A"}<br>
-      <strong>Model Used:</strong> ${data.model_used || "N/A"}
-      ${data.matched_pattern ? `<br><strong>Matched Pattern:</strong> ${data.matched_pattern}` : ""}
-    `;
+    if (metaBox) {
+      metaBox.innerHTML = `
+        <strong>Intent:</strong> ${data.intent || "N/A"}<br>
+        <strong>Confidence:</strong> ${data.confidence !== undefined ? data.confidence : "N/A"}<br>
+        <strong>Model Used:</strong> ${data.model_used || "N/A"}
+        ${data.matched_pattern ? `<br><strong>Matched Pattern:</strong> ${data.matched_pattern}` : ""}
+      `;
+    }
+
   } catch (error) {
-    responseBox.innerText = "Could not connect to AbleBot backend.";
+    console.error("Frontend error:", error);
+    responseBox.innerText = "Frontend error. Please check browser console.";
   }
 }
 
@@ -174,3 +193,7 @@ async function sendSTT() {
 function toggleAccessibility() {
   document.body.classList.toggle("accessibility");
 }
+
+window.addEventListener("DOMContentLoaded", function () {
+  setMode(currentMode);
+});

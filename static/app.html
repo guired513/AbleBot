@@ -19,10 +19,12 @@
       <button class="access-btn" onclick="toggleAccessibility()">Accessibility Mode</button>
     </section>
 
-    <section class="access-panel">
-      <button class="access-btn" onclick="setMode('rule-based')">Rule-Based</button>
-      <button class="access-btn active" onclick="setMode('bert')">BERT Mode</button>
-    </section>
+    <div class="mode-toggle">
+    <label>Select Mode:</label>
+    <button onclick="setMode('rule-based')" id="btn-rule">Rule-Based</button>
+    <button onclick="setMode('bert')" id="btn-bert">BERT</button>
+    <button onclick="setMode('bert-ft')" id="btn-bert-ft">BERT-FT</button>
+  </div>
 
     <section class="chat-card">
       <label for="message">Ask AbleBot</label>
@@ -38,6 +40,7 @@
         AbleBot response will appear here.
        
       </div>
+      <div id="metaBox" class="meta-box"></div>
 
       <div id="metaBox" class="meta-box"> </div>
     </section>
