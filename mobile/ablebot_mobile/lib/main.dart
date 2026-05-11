@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'services/api_service.dart';
+import 'screens/chat_screen.dart';
 
 void main() {
   runApp(const AbleBotApp());
@@ -11,7 +11,7 @@ class AbleBotApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AbleBot Mobile',
+      title: 'AbleBot',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorSchemeSeed: Colors.green,
@@ -22,132 +22,3 @@ class AbleBotApp extends StatelessWidget {
   }
 }
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({super.key});
-
-  @override
-  State<ChatScreen> createState() => _ChatScreenState();
-}
-
-class _ChatScreenState extends State<ChatScreen> {
-  final TextEditingController _controller = TextEditingController();
-
-  String _selectedMode = 'rule-based';
-  String _botResponse = 'AbleBot is ready.';
-  bool _isLoading = false;
-
-  final List<String> _modes = [
-    'rule-based',
-    'bert',
-    'bert-ft',
-  ];
-
-  Future<void> _sendMessage() async {
-    final message = _controller.text.trim();
-
-    if (message.isEmpty) return;
-
-    setState(() {
-      _isLoading = true;
-      _botResponse = 'Processing...';
-    });
-
-    try {
-      final result = await ApiService.sendChatMessage(
-        message: message,
-        mode: _selectedMode,
-      );
-
-      setState(() {
-        _botResponse =
-            result['response']?.toString() ??
-            result['reply']?.toString() ??
-            result['answer']?.toString() ??
-            result.toString();
-      });
-    } catch (e) {
-      setState(() {
-        _botResponse = 'Unable to connect to AbleBot backend. Error: $e';
-      });
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('AbleBot Mobile'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            DropdownButtonFormField<String>(
-              value: _selectedMode,
-              decoration: const InputDecoration(
-                labelText: 'AI Mode',
-                border: OutlineInputBorder(),
-              ),
-              items: _modes.map((mode) {
-                return DropdownMenuItem(
-                  value: mode,
-                  child: Text(mode),
-                );
-              }).toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  setState(() {
-                    _selectedMode = value;
-                  });
-                }
-              },
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _controller,
-              minLines: 1,
-              maxLines: 4,
-              decoration: const InputDecoration(
-                labelText: 'Ask AbleBot',
-                hintText: 'Example: How can I apply for a PWD ID?',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 16),
-            SizedBox(
-              width: double.infinity,
-              height: 52,
-              child: ElevatedButton.icon(
-                onPressed: _isLoading ? null : _sendMessage,
-                icon: const Icon(Icons.send),
-                label: Text(_isLoading ? 'Sending...' : 'Send'),
-              ),
-            ),
-            const SizedBox(height: 24),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey.shade300),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: SingleChildScrollView(
-                  child: Text(
-                    _botResponse,
-                    style: const TextStyle(fontSize: 18),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

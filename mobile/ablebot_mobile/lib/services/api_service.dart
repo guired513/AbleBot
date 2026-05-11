@@ -25,4 +25,14 @@ class ApiService {
       throw Exception('Failed to connect to AbleBot backend');
     }
   }
+  static Future<bool> checkHealth() async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/health'));
+      return response.statusCode == 200;
+    } catch (e) {
+      return false;
+    }
+  }
+
 }
+
