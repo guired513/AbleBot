@@ -172,3 +172,21 @@ Training was conducted for three epochs. The average training loss decreased acr
 The initial test accuracy reached 84.62%.
 
 This result indicates that the supervised BERT fine-tuning pipeline is functional and that dataset expansion improved the model’s intent classification performance. Further validation with larger and real user-derived datasets will be conducted in the next phase.
+
+## April 2026 — Mobile Foundation Stabilization
+
+### Completed
+- Organized Flutter mobile app structure.
+- Separated the main app entry point from the chat screen.
+- Created the initial chat message model.
+- Prepared reusable chat bubble component.
+- Added backend health endpoint planning.
+- Prepared accessibility layer folder.
+
+### Development Notes
+AbleBot Mobile has already successfully connected to the Flask backend through a real Android device. The current sprint focuses on making the mobile app structure more scalable before adding OCR, STT, TTS, haptic feedback, and accessibility-specific features.
+
+### Next Target
+- Convert current single-response UI into a real chat history interface.
+- Add backend online/offline status.
+- Prepare OCR and voice integration screens.
