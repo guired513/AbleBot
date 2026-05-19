@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/chat_screen.dart';
+import 'screens/main_navigation_screen.dart';
 
 void main() {
   runApp(const AbleBotApp());
@@ -17,8 +17,7 @@ class AbleBotApp extends StatelessWidget {
         colorSchemeSeed: Colors.green,
         useMaterial3: true,
       ),
-      home: const ChatScreen(),
+      home: const MainNavigationScreen(),
     );
   }
 }
-
